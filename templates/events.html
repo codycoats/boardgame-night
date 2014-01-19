@@ -2,3 +2,12 @@
 <%inherit file="base.html" />
 
 <h1>Events</h1>
+
+    % for event in events:
+        <li>
+           <h2>${event.title}</h2>
+           <h3>${event.date}</h3>
+        </li>
+     % endfor />
+
+<a href="/new-event" class="btn btn-large btn-primary">New Event</a>

@@ -15,9 +15,9 @@ mako.default_config.update(dict(
     ))
 
 class BaseHandler(webapp2.RequestHandler):
-    """BaseHandler which will be inherited all other handlers 
+    """BaseHandler which will be inherited all other handlers
     it should implement the most common functionality
-    required by all handlers 
+    required by all handlers
     """
 
     def __init__(self, request, response):
@@ -32,7 +32,7 @@ class BaseHandler(webapp2.RequestHandler):
 	self.response.write(rv)
 
     def render_json(self, obj):
-	rv = json.dumps(obj) 
+	rv = json.dumps(obj)
 	self.response.headers.content_type = 'application/json'
 	self.response.write(rv)
 
