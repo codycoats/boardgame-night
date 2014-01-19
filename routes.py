@@ -5,6 +5,6 @@ from handlers import *
 
 #This is the place where all of your URL mapping goes
 route_list = [
-	(r'^/hello', HelloHandler),
+	(r'^/events', EventsHandler),
 	(r'^/', DefaultHandler)
 	]
