@@ -3,11 +3,11 @@
 
 <h1>Events</h1>
 
-    % for event in events:
-        <li>
-           <h2>${event.title}</h2>
-           <h3>${event.date}</h3>
-        </li>
-     % endfor />
-
+<ul>
+    <li>
+    % for e in events:
+           <h2>${e.title} - <small> ${e.date}</small></h2>
+     % endfor
+    </li>
+</ul>
 <a href="/new-event" class="btn btn-large btn-primary">New Event</a>

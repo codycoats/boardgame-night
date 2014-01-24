@@ -1,7 +1,7 @@
-
 from models import events
 
 import logging
+from datetime import datetime
 
 log = logging.getLogger(__name__)
 
@@ -10,16 +10,19 @@ from base import BaseHandler
 class EventsHandler(BaseHandler):
     def get(self):
         config = self.app.config
+
         #Get all events
         events_query = events.Events.query()
         e = events_query.fetch()
+
+        print (type(e))
 
         #Display all events
         template_values = {
             'events': e
         }
 
-	self.render_response('events.html', **template_values)
+        self.render_response('events.html', **template_values)
 
 class NewEventHandler(BaseHandler):
     def get(self):
@@ -29,14 +32,17 @@ class NewEventHandler(BaseHandler):
     def post(self):
 
         #create new Event
-        event = Event()
+        event = events.Events()
 
         #update new model with submitted information from form
         event.title = self.request.get('title')
-        event.date = self.request.get('date')
+        event.date = datetime.strptime(self.request.get('date'), '%m/%d/%y')
 
         #save new event to db
         event.put()
+
+        self.redirect('/events')
+
 
 class DefaultHandler(BaseHandler):
     def get(self):

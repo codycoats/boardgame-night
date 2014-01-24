@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from handlers import *
+import handlers
+from handlers import common_handler
 
 #This is the place where all of your URL mapping goes
 route_list = [
-	(r'^/events', EventsHandler),
-           (r'^/new-event', NewEventHandler),
-	(r'^/', DefaultHandler)
+	(r'^/events', common_handler.EventsHandler),
+           (r'^/new-event', common_handler.NewEventHandler),
+	(r'^/', common_handler.DefaultHandler)
 ]
