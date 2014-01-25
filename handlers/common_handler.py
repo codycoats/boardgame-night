@@ -45,21 +45,18 @@ class NewEventHandler(BaseHandler):
         self.redirect('/events')
 
 class EventHandler(BaseHandler):
-    def get(self, eventKey):
+    def get(self, eventUrlString):
 
         #get event
-        event_key = ndb.Key('Events', eventKey)
+        event_key = ndb.Key(urlsafe=eventUrlString)
         event = event_key.get()
-
-
-        print(event)
 
         template_values ={
             'event' : event
         }
 
         config = self.app.config
-        self.render_response('event.html')
+        self.render_response('event.html', **template_values)
 
 class DefaultHandler(BaseHandler):
     def get(self):
