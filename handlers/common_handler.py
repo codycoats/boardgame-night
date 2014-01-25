@@ -1,3 +1,4 @@
+from google.appengine.ext import ndb
 from models import events
 
 import logging
@@ -47,7 +48,9 @@ class EventHandler(BaseHandler):
     def get(self, eventKey):
 
         #get event
-        event = events.Events.get(eventKey)
+        event_key = ndb.Key('Events', eventKey)
+        event = event_key.get()
+
 
         print(event)
 
