@@ -4,10 +4,10 @@
 <h1>Events</h1>
 
 <ul>
-    <li>
     % for e in events:
-           <h2>${e.title} - <small> ${e.date}</small></h2>
-     % endfor
+    <li>
+        <h2><a href="/events/${str(e.key.id())}">${e.title}</a> - <small>${e.date}</small></h2>
     </li>
+     % endfor
 </ul>
 <a href="/new-event" class="btn btn-large btn-primary">New Event</a>

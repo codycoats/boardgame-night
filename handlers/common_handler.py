@@ -43,6 +43,20 @@ class NewEventHandler(BaseHandler):
 
         self.redirect('/events')
 
+class EventHandler(BaseHandler):
+    def get(self, eventKey):
+
+        #get event
+        event = events.Events.get(eventKey)
+
+        print(event)
+
+        template_values ={
+            'event' : event
+        }
+
+        config = self.app.config
+        self.render_response('event.html')
 
 class DefaultHandler(BaseHandler):
     def get(self):
