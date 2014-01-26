@@ -44,7 +44,7 @@
     </div><!-- /.modal -->
 %endif
 
-%if user and user not in event.attendees:
+%if (user and (user not in event.attendees) and (user != event.host) ):
 <button class="btn btn-success" data-toggle="modal" data-target="#signupEventModal">
   Signup
 </button>
