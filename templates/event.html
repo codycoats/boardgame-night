@@ -8,31 +8,64 @@
 
     <dt>Date:</dt>
     <dd>${event.date}</dd>
+
+    <dt>Attendess:</dt>
+    <dd>
+        %for a in event.attendees:
+          ${a}
+        %endfor
+    </dd>
 </dl>
+
 %if user == event.host:
     <a href="/edit-event/${event.key.urlsafe()}" class="btn btn-primary">Edit</a>
     <button class="btn btn-danger" data-toggle="modal" data-target="#deleteEventModal">
       Delete
     </button>
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="deleteEventModalLabel">Delete Event</h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete <strong>${event.title}</strong>?
+          </div>
+          <div class="modal-footer">
+            <form action="/delete-event/${event.key.urlsafe()}" method="post">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Nope</button>
+                <button type="submit" class="btn btn-danger" href="">Yep</button>
+            </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 %endif
 
-<!-- Delete Modal -->
-<div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+%if user:
+<button class="btn btn-success" data-toggle="modal" data-target="#signupEventModal">
+  Signup
+</button>
+<!-- Signup Modal -->
+<div class="modal fade" id="signupEventModal" tabindex="-1" role="dialog" aria-labelledby="signupEventModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="deleteEventModalLabel">Delete Event</h4>
+        <h4 class="modal-title" id="signupEventModalLabel">Signup</h4>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete <strong>${event.title}</strong>?
+        Are you sure you want to signup for <strong>${event.title}</strong>?
       </div>
       <div class="modal-footer">
-        <form action="/delete-event/${event.key.urlsafe()}" method="post">
+        <form action="/signup-event/${event.key.urlsafe()}" method="post">
             <button type="button" class="btn btn-default" data-dismiss="modal">Nope</button>
-            <button type="submit" class="btn btn-danger" href="">Yep</button>
+            <button type="submit" class="btn btn-success" href="">Yep</button>
         </form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+%endif

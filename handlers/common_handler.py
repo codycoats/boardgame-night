@@ -86,6 +86,22 @@ class DeleteEventHandler(BaseHandler):
 
         self.redirect('/events')
 
+class SignupEventHandler(BaseHandler):
+    def post(self, eventUrlString):
+
+        #get event
+        event_key = ndb.Key(urlsafe=eventUrlString)
+        event = event_key.get()
+
+        #add user to attendees list
+        user = users.get_current_user()
+        event.attendees.append(user)
+
+        #update event
+        event.put()
+
+        self.redirect('/events/'+eventUrlString)
+
 class EventHandler(BaseHandler):
     def get(self, eventUrlString):
 
@@ -96,6 +112,8 @@ class EventHandler(BaseHandler):
         template_values ={
             'event' : event
         }
+
+        print(event.attendees)
 
         config = self.app.config
         self.render_response('event.html', **template_values)

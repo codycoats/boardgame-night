@@ -12,6 +12,7 @@ route_list = [
            (r'^/new-event', common_handler.NewEventHandler),
            (r'^/edit-event/(.*)', common_handler.EditEventHandler),
            (r'^/delete-event/(.*)', common_handler.DeleteEventHandler),
+           (r'^/signup-event/(.*)', common_handler.SignupEventHandler),
 
            #Account routes
            (r'^/profile', common_handler.ProfileHandler),
