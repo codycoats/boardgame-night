@@ -9,6 +9,13 @@ builtins:
 
 handlers:
 
+#require user to login to view profile page
+- url: /profile
+  script: main.app
+  login: required
+  auth_fail_action: redirect
+
+
 - url: /static
   static_dir: static
 

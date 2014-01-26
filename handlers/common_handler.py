@@ -1,5 +1,7 @@
 from google.appengine.ext import ndb
+from google.appengine.api import users
 from models import events
+from models import profile
 
 import logging
 from datetime import datetime
@@ -8,6 +10,7 @@ log = logging.getLogger(__name__)
 
 from base import BaseHandler
 
+#Event Handlers
 class EventsHandler(BaseHandler):
     def get(self):
         config = self.app.config
@@ -94,6 +97,19 @@ class EventHandler(BaseHandler):
 
         config = self.app.config
         self.render_response('event.html', **template_values)
+
+#User Handlers
+class ProfileHandler(BaseHandler):
+    def get(self):
+
+        user = users.get_current_user()
+
+        template_values = {
+            'user' : user
+        }
+
+        self.render_response('profile.html', **template_values)
+
 
 class DefaultHandler(BaseHandler):
     def get(self):

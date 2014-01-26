@@ -6,10 +6,15 @@ from handlers import common_handler
 
 #This is the place where all of your URL mapping goes
 route_list = [
+           #Event routes
            (r'^/events/(.*)', common_handler.EventHandler),
 	(r'^/events', common_handler.EventsHandler),
            (r'^/new-event', common_handler.NewEventHandler),
            (r'^/edit-event/(.*)', common_handler.EditEventHandler),
            (r'^/delete-event/(.*)', common_handler.DeleteEventHandler),
+
+           #Account routes
+           (r'^/profile', common_handler.ProfileHandler),
+
 	(r'^/', common_handler.DefaultHandler)
 ]
