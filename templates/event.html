@@ -24,8 +24,10 @@
         Are you sure you want to delete <strong>${event.title}</strong>?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Nope</button>
-        <button type="button" class="btn btn-primary" href="/delete-event/${event.key.urlsafe()}">Yep</button>
+        <form action="/delete-event/${event.key.urlsafe()}" method="post">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Nope</button>
+            <button type="submit" class="btn btn-danger" href="">Yep</button>
+        </form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
