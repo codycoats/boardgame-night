@@ -62,8 +62,6 @@ class EditEventHandler(BaseHandler):
         event_key = ndb.Key(urlsafe=eventUrlString)
         event = event_key.get()
 
-        print(event)
-
         #modify event values with user input
         event.title = self.request.get('title')
         event.date = datetime.strptime(self.request.get('date'), '%m/%d/%y')
@@ -71,6 +69,17 @@ class EditEventHandler(BaseHandler):
         event.put()
 
         self.redirect('/events/'+event.key.urlsafe())
+
+class DeleteEventHandler(BaseHandler):
+    def post(self, eventUrlString):
+
+        #get event key
+        event_key = ndb.Key(urlsafe=eventUrlString)
+
+        #delete from datastore
+        event_key.delete()
+
+        self.redirect('/events')
 
 class EventHandler(BaseHandler):
     def get(self, eventUrlString):
