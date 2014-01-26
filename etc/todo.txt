@@ -1,3 +1,4 @@
 date format placeholder
 
-change "Account" to nickname()
+
+if user updates bggprofile their games will not update on an event unless event gets put()

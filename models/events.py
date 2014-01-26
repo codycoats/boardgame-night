@@ -5,6 +5,7 @@ from google.appengine.api import urlfetch
 import urllib2
 import xml.dom.minidom as mdom
 
+from models import profile
 
 class Events(ndb.Model):
     title = ndb.StringProperty()
@@ -19,10 +20,14 @@ class Events(ndb.Model):
 
     def update_gamelist(self):
 
-        host_bggUsername = "abishek_sm"
+        host_user = self.host
+        host_profile_query = profile.Profile.query( profile.Profile.user == host_user)
+        host_profile = host_profile_query.get()
+
+        print(host_profile.bggProfile)
 
         requestURL = "http://www.boardgamegeek.com/xmlapi/collection/" \
-                             + host_bggUsername + "?own=1"
+                             + host_profile.bggProfile + "?own=1"
 
         data = urlfetch.fetch(requestURL).content
         dom = mdom.parseString(data)
