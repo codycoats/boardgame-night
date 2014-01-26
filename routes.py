@@ -15,6 +15,7 @@ route_list = [
 
            #Account routes
            (r'^/profile', common_handler.ProfileHandler),
+           (r'^/edit-profile', common_handler.EditProfileHandler),
 
 	(r'^/', common_handler.DefaultHandler)
 ]

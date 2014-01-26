@@ -10,7 +10,7 @@ builtins:
 handlers:
 
 #require user to login to view profile page
-- url: /profile
+- url: /profile(.*)
   script: main.app
   login: required
   auth_fail_action: redirect

@@ -125,6 +125,39 @@ class ProfileHandler(BaseHandler):
 
         self.render_response('profile.html', **template_values)
 
+class EditProfileHandler(BaseHandler):
+    def get(self):
+
+        #get user and profile
+        current_user = users.get_current_user()
+
+        profile_query = profile.Profile.query( profile.Profile.user == current_user)
+        current_profile = profile_query.get()
+
+        template_values = {
+            'user' : current_user,
+            'profile' : current_profile
+        }
+
+        self.render_response('edit-profile.html', **template_values)
+
+    def post(self):
+
+        #get user and profile
+        current_user = users.get_current_user()
+
+        profile_query = profile.Profile.query( profile.Profile.user == current_user)
+        current_profile = profile_query.get()
+
+
+        #update fields
+        current_profile.info = self.request.get('info')
+        current_profile.bggProfile = self.request.get('bggProfile')
+
+        current_profile.put()
+
+        self.redirect('/profile')
+
 
 class DefaultHandler(BaseHandler):
     def get(self):

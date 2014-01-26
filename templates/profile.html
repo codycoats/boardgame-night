@@ -1,16 +1,14 @@
 <%inherit file="base.html" />
 
-<div class="alert alert-warning alert-dismissable">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  <p>Logged in as ${user.nickname()}</p>
-</div>
-
-<h1> Hello </h1>
+<h1> Hello ${user.nickname()}</h1>
 
 <dl>
     <dt>info</dt>
     <dd>${profile.info}</dd>
 
-    <dt>bggProfile</dt>
-    <dd>${profile.bggProfile}</dd>
+    <dt>Board Game Geek Profile</dt>
+    <dd><a href="${profile.bggProfile}">${profile.bggProfile}</a></dd>
 </dl>
+
+
+<a href="/edit-profile" class="btn btn-default">Edit</a>
