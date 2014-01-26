@@ -9,12 +9,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="/static/libs/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <!--<link href="/static/app/css/base.css" rel="stylesheet">-->
 
@@ -33,16 +28,27 @@
 
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="/">Board Game Night</a>
-          <ul class="nav nav-tabs">
-            <li><a href="/events">Events</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">BoardGame Night</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class=""><a href="/events">Events</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+
     <div class="container">
 	${self.body()}
     </div> <!-- /container -->
@@ -50,7 +56,8 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- inherited template should define their own include_js to include JS they need -->
     ${self.include_js()}
@@ -58,20 +65,6 @@
     <div class="container">
     </div>
     </footer>
-
-    <script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-34903902-1']);
-	_gaq.push(['_setDomainName', 'facebookfantracker.com']);
-	_gaq.push(['_trackPageview']);
-
-	(function() {
-	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-
-    </script>
   </body>
 </html>
 

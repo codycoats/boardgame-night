@@ -8,3 +8,25 @@
 </dl>
 
 <a href="/edit-event/${event.key.urlsafe()}" class="btn btn-primary">Edit</a>
+<button class="btn btn-danger" data-toggle="modal" data-target="#deleteEventModal">
+  Delete
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="deleteEventModalLabel">Delete Event</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete <strong>${event.title}</strong>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Nope</button>
+        <button type="button" class="btn btn-primary" href="/delete-event/${event.key.urlsafe()}">Yep</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
