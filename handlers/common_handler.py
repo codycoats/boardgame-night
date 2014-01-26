@@ -1,5 +1,6 @@
 from google.appengine.ext import ndb
 from google.appengine.api import users
+
 from models import events
 from models import profile
 
@@ -102,10 +103,24 @@ class EventHandler(BaseHandler):
 class ProfileHandler(BaseHandler):
     def get(self):
 
-        user = users.get_current_user()
+        #get user and profile
+        current_user = users.get_current_user()
+
+        profile_query = profile.Profile.query( profile.Profile.user == current_user)
+        current_profile = profile_query.get()
+
+        #first time user
+        if not current_profile:
+            #create new profile
+            current_profile = profile.Profile()
+
+            current_profile.user = current_user
+
+            current_profile.put()
 
         template_values = {
-            'user' : user
+            'user' : current_user,
+            'profile' : current_profile
         }
 
         self.render_response('profile.html', **template_values)
