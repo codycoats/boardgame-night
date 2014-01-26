@@ -1,4 +1,5 @@
 import webapp2
+from google.appengine.api import users
 import json
 from mako.template import Template
 from mako.lookup import TemplateLookup
@@ -28,8 +29,16 @@ class BaseHandler(webapp2.RequestHandler):
 	return mako.get_mako(app=self.app)
 
     def render_response(self, _template, **context):
-	rv = self.mako.render_template(_template, **context)
-	self.response.write(rv)
+        user = users.get_current_user()
+        context['user'] = user
+        if user:
+            print("logged in")
+            context['log_inout_url'] = users.create_logout_url('/')
+        else:
+            print ("not logged in")
+            context['log_inout_url'] = users.create_login_url('/')
+        rv = self.mako.render_template(_template, **context)
+        self.response.write(rv)
 
     def render_json(self, obj):
 	rv = json.dumps(obj)
