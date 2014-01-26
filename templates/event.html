@@ -2,7 +2,9 @@
 
 <h2>${event.title}</h2>
 
-<dl>
+<div id="info">
+    <h2>Event Info</h2>
+    <dl>
     <dt>Host:</dt>
     <dd>${event.host.nickname()}</dd>
 
@@ -15,7 +17,7 @@
           ${a}
         %endfor
     </dd>
-</dl>
+    </dl>
 
 %if user == event.host:
     <a href="/edit-event/${event.key.urlsafe()}" class="btn btn-primary">Edit</a>
@@ -69,3 +71,14 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 %endif
+</div>
+
+<div id="games">
+    <h2>Games</h2>
+    ## <ul>
+    ##     %for game in event.games:
+    ##         <li>${game}</li>
+    ##     %endfor
+    ## </ul>
+
+</div>

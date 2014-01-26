@@ -32,10 +32,8 @@ class BaseHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         context['user'] = user
         if user:
-            print("logged in")
             context['log_inout_url'] = users.create_logout_url('/')
         else:
-            print ("not logged in")
             context['log_inout_url'] = users.create_login_url('/')
         rv = self.mako.render_template(_template, **context)
         self.response.write(rv)

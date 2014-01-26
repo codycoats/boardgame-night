@@ -50,9 +50,9 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
         <ul class="dropdown-menu">
           %if user:
-
-            <li><a href="/profile">My Profile</a></li>
+            <li><p class="navbar-text">${user.nickname()}</p></li>
             <li class="divider"></li>
+            <li><a href="/profile">My Profile</a></li>
             <li><a href="${log_inout_url}">Logout</a></li>
           %else:
             <li><a href="${log_inout_url}">Login</a></li>
