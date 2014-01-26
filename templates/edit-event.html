@@ -1,0 +1,16 @@
+
+<%inherit file="base.html" />
+
+<h1>New Event</h1>
+
+
+<form action="/edit-event/${event.key.urlsafe()}" method="post" role="form">
+    <label for="title">Title</label>
+    <input type="text" name="title" value="${event.title}">
+
+    <label for="date">Date</label>
+    <input type="date" name="date" value="${event.date.strftime('%m/%d/%y')}">
+
+    <br>
+    <button type="submit" class="btn btn-large btn-primary">Submit</button>
+</form>

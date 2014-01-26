@@ -16,8 +16,6 @@ class EventsHandler(BaseHandler):
         events_query = events.Events.query()
         e = events_query.fetch()
 
-        print (type(e))
-
         #Display all events
         template_values = {
             'events': e
@@ -43,6 +41,36 @@ class NewEventHandler(BaseHandler):
         event.put()
 
         self.redirect('/events')
+
+class EditEventHandler(BaseHandler):
+    def get(self, eventUrlString):
+
+        #get event
+        event_key = ndb.Key(urlsafe=eventUrlString)
+        event = event_key.get()
+
+        template_values ={
+            'event' : event
+        }
+
+        config = self.app.config
+        self.render_response('edit-event.html', **template_values)
+
+    def post(self, eventUrlString):
+
+        #get event
+        event_key = ndb.Key(urlsafe=eventUrlString)
+        event = event_key.get()
+
+        print(event)
+
+        #modify event values with user input
+        event.title = self.request.get('title')
+        event.date = datetime.strptime(self.request.get('date'), '%m/%d/%y')
+
+        event.put()
+
+        self.redirect('/events/'+event.key.urlsafe())
 
 class EventHandler(BaseHandler):
     def get(self, eventUrlString):

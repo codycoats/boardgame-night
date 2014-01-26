@@ -9,5 +9,6 @@ route_list = [
            (r'^/events/(.*)', common_handler.EventHandler),
 	(r'^/events', common_handler.EventsHandler),
            (r'^/new-event', common_handler.NewEventHandler),
+           (r'^/edit-event/(.*)', common_handler.EditEventHandler),
 	(r'^/', common_handler.DefaultHandler)
 ]
