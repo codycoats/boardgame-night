@@ -120,6 +120,8 @@ class EventHandler(BaseHandler):
         event_key = ndb.Key(urlsafe=eventUrlString)
         event = event_key.get()
 
+        event.update_gamelist()
+
         template_values ={
             'event' : event
         }

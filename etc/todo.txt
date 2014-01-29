@@ -1,5 +1,3 @@
-date format placeholder
-
 first login direct user to create profile
 
-if user updates bggprofile their games will not update on an event unless event gets put()
+update_gamelist() called too often
