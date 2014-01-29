@@ -2,14 +2,27 @@
 
 <h1> Hello ${user.nickname()}</h1>
 
-<dl>
-    <dt>info</dt>
-    <dd>${profile.info}</dd>
+##First Time
+%if not profile:
 
-    <dt>Board Game Geek Username</dt>
-    <dd><a href="${profile.bggProfile}">${profile.bggProfile}</a></dd>
+    <dl>
+        <dt>Info</dt>
+        <dd></dd>
 
-</dl>
+        <dt>Board Game Geek Username</dt>
+        <dd></dd>
+    </dl>
 
+%else:
 
+    ##Returning
+    <dl>
+        <dt>Info</dt>
+        <dd>${profile.info}</dd>
+
+        <dt>Board Game Geek Username</dt>
+        <dd><a href="${profile.bggProfile}">${profile.bggProfile}</a></dd>
+    </dl>
+
+%endif
 <a href="/edit-profile" class="btn btn-default">Edit</a>

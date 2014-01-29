@@ -133,6 +133,11 @@ class EventHandler(BaseHandler):
 class ProfileHandler(BaseHandler):
     def get(self):
 
+        template_values = {
+            'errors' : [],
+            'warnings' : []
+        }
+
         #get user and profile
         current_user = users.get_current_user()
 
@@ -145,12 +150,16 @@ class ProfileHandler(BaseHandler):
             current_profile = profile.Profile()
             current_profile.user = current_user
 
+            template_values['errors'].append("Your profile is incomplete. Please edit your profile and complete the information!")
+
             current_profile.put()
 
-        template_values = {
-            'user' : current_user,
-            'profile' : current_profile
-        }
+        #incomplete profile
+        elif current_profile.bggProfile == "" or current_profile.info == "":
+            template_values['errors'].append("Your profile is incomplete. Please edit your profile and complete the information!")
+
+        template_values['user'] = current_user
+        template_values['profile'] = current_profile
 
         self.render_response('profile.html', **template_values)
 
