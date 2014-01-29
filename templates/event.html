@@ -1,9 +1,5 @@
 <%inherit file="base.html" />
 
-<%def name="include_css()">
-    <link href="/static/css/event.css" rel="stylesheet">
-</%def>
-
 <h2>${event.title}</h2>
 
 <div id="info">
@@ -13,7 +9,7 @@
     <dd>${event.host.nickname()}</dd>
 
     <dt>Date:</dt>
-    <dd>${event.date}</dd>
+    <dd>${event.date.strftime('%m/%d/%Y')}</dd>
 
     <dt>Attendess:</dt>
     <dd>
@@ -86,3 +82,14 @@
     </ul>
 
 </div>
+
+
+<%def name="include_css()">
+    <link href="/static/css/event.css" rel="stylesheet">
+    <link href="/static/datepicker/css/datepicker.css" rel="stylesheet">
+</%def>
+
+<%def name="include_js()">
+    <script src="/static/datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/static/js/events.js"></script>
+</%def>

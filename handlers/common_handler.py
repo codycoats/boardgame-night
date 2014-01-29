@@ -50,7 +50,7 @@ class NewEventHandler(BaseHandler):
 
         #update new model with submitted information from form
         event.title = self.request.get('title')
-        event.date = datetime.strptime(self.request.get('event-date'), '%m/%d/%y')
+        event.date = datetime.strptime(self.request.get('event-date'), '%m/%d/%Y')
         event.host = users.get_current_user()
 
         #save new event to db
@@ -80,7 +80,7 @@ class EditEventHandler(BaseHandler):
 
         #modify event values with user input
         event.title = self.request.get('title')
-        event.date = datetime.strptime(self.request.get('date'), '%m/%d/%y')
+        event.date = datetime.strptime(self.request.get('event-date'), '%m/%d/%Y')
 
         event.put()
 

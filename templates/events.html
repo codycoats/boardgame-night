@@ -6,8 +6,18 @@
 <ul>
     % for e in events:
     <li>
-        <h2><a href="/events/${e.key.urlsafe()}">${e.title}</a> - <small>${e.date.strftime("%d/%m/%y")}</small></h2>
+        <h2><a href="/events/${e.key.urlsafe()}">${e.title}</a> - <small>${e.date.strftime("%m/%d/%Y")}</small></h2>
     </li>
      % endfor
 </ul>
 <a href="/new-event" class="btn btn-large btn-primary">New Event</a>
+
+
+<%def name="include_css()">
+    <link href="/static/datepicker/css/datepicker.css" rel="stylesheet">
+</%def>
+
+<%def name="include_js()">
+    <script src="/static/datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/static/js/events.js"></script>
+</%def>
