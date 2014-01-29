@@ -6,6 +6,7 @@ import urllib2
 import xml.dom.minidom as mdom
 
 from models import profile
+from models import game
 
 class Events(ndb.Model):
     title = ndb.StringProperty()
@@ -35,11 +36,12 @@ class Events(ndb.Model):
 
             items = dom.getElementsByTagName("item")
 
-            game_titles = []
+            games = []
             for item in items:
                 item_name = item.getElementsByTagName('name')
                 for i in item_name:
-                    game_titles.append(i.firstChild.data)
+                    game = game.Game()
+                    game.title = i.firstChild.data
 
-            self.games = game_titles
+            self.games = games
 
