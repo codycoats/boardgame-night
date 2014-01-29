@@ -5,6 +5,8 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 from webapp2_extras import mako
 
+from models import profile
+
 import logging
 
 log = logging.getLogger(__name__)
@@ -29,8 +31,13 @@ class BaseHandler(webapp2.RequestHandler):
 	return mako.get_mako(app=self.app)
 
     def render_response(self, _template, **context):
+        #Get current user
         user = users.get_current_user()
+        user_profile = profile.Profile.query(profile.Profile.user == user).get()
+
         context['user'] = user
+        context['profile'] = user_profile
+
         if user:
             context['log_inout_url'] = users.create_logout_url('/')
         else:

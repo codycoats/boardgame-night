@@ -24,23 +24,22 @@ class Events(ndb.Model):
         host_profile_query = profile.Profile.query( profile.Profile.user == host_user)
         host_profile = host_profile_query.get()
 
-        print(host_profile.bggProfile)
+        if host_profile:
+            requestURL = "http://www.boardgamegeek.com/xmlapi/collection/" \
+                                 + host_profile.bggProfile + "?own=1"
 
-        requestURL = "http://www.boardgamegeek.com/xmlapi/collection/" \
-                             + host_profile.bggProfile + "?own=1"
+            data = urlfetch.fetch(requestURL).content
+            dom = mdom.parseString(data)
 
-        data = urlfetch.fetch(requestURL).content
-        dom = mdom.parseString(data)
+            #loop through dom and get all games
 
-        #loop through dom and get all games
+            items = dom.getElementsByTagName("item")
 
-        items = dom.getElementsByTagName("item")
+            game_titles = []
+            for item in items:
+                item_name = item.getElementsByTagName('name')
+                for i in item_name:
+                    game_titles.append(i.firstChild.data)
 
-        game_titles = []
-        for item in items:
-            item_name = item.getElementsByTagName('name')
-            for i in item_name:
-                game_titles.append(i.firstChild.data)
-
-        self.games = game_titles
+            self.games = game_titles
 

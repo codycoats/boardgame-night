@@ -3,15 +3,17 @@
 
 <h1>Edit profile for ${user.nickname()}</h1>
 
-
-
 <form action="/edit-profile" method="post" role="form">
 
-    <label for="info">Info</label>
-    <input type="text" name="info" value="${profile.info}">
+    <div class="form-group"
+        <label class="control-label"  for="info">Info</label>
+        <input type="text" name="info" value="${profile.info}">
+    </div>
 
-    <label for="bggProfile">Board Game Geek Profile</label>
-    <input type="text" name="bggProfile" value="${profile.bggProfile}">
+    <div class="form-group"
+        <label class="control-label"  for="bggProfile">Board Game Geek Profile</label>
+        <input type="text" name="bggProfile" value="${profile.bggProfile}">
+    </div>
 
     <br>
     <button type="submit" class="btn btn-large btn-primary">Submit</button>

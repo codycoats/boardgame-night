@@ -29,8 +29,19 @@ class EventsHandler(BaseHandler):
 
 class NewEventHandler(BaseHandler):
     def get(self):
+
+        template_values = {
+            'warnings' : []
+        }
+
+        user = users.get_current_user()
+        user_profile = profile.Profile.query(profile.Profile.user == user).get()
+
+        if not user_profile:
+            template_values['warnings'].append("You have not completed your profile. Go to your <a href='/profile'>profile</a> to ensure full functionality.")
+
         config = self.app.config
-        self.render_response('new-event.html')
+        self.render_response('new-event.html', **template_values)
 
     def post(self):
 
@@ -132,7 +143,6 @@ class ProfileHandler(BaseHandler):
         if not current_profile:
             #create new profile
             current_profile = profile.Profile()
-
             current_profile.user = current_user
 
             current_profile.put()
@@ -150,13 +160,26 @@ class EditProfileHandler(BaseHandler):
         #get user and profile
         current_user = users.get_current_user()
 
+        print(current_user)
+
         profile_query = profile.Profile.query( profile.Profile.user == current_user)
         current_profile = profile_query.get()
+
+        #first time user
+        if not current_profile:
+            #create new profile
+            current_profile = profile.Profile()
+            current_profile.user = current_user
+
+            current_profile.put()
 
         template_values = {
             'user' : current_user,
             'profile' : current_profile
         }
+
+        print(current_user)
+        print(template_values)
 
         self.render_response('edit-profile.html', **template_values)
 
