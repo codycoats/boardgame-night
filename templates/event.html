@@ -77,7 +77,7 @@
     <h2>Games</h2>
     <ul>
         %for game in event.games:
-            <li>${game.title}</li>
+            <li>${game.get().title}</li>
         %endfor
     </ul>
 
