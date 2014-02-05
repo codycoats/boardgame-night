@@ -77,7 +77,7 @@
     <h2>Games</h2>
     <ul>
         %for game in event.games:
-            <li>${game.get().title}</li>
+            <li class="game" data-maxPlayers="${game.get().maxPlayers}"  data-minPlayers="${game.get().minPlayers}">${game.get().title}</li>
         %endfor
     </ul>
 
