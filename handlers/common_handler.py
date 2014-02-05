@@ -52,6 +52,7 @@ class NewEventHandler(BaseHandler):
         event.title = self.request.get('title')
         event.date = datetime.strptime(self.request.get('event-date'), '%m/%d/%Y')
         event.host = users.get_current_user()
+        event.attendees.append(event.host)
 
         #save new event to db
         event.put()
