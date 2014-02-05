@@ -75,20 +75,28 @@
 </div>
 
 <div id="games">
-    <h2>Games</h2>
-    <ul class="list-group" id="playable-list">
-        %for game in event.games:
+    <div class="panel panel-primary" >
+        <div class="panel-heading">
+            <h2 class="panel-title">Games</h2>
+        </div>
+        <ul class="list-group" id="playable-list">
+            %for game in event.games:
             <li class="list-group-item game" data-maxPlayers="${game.get().maxPlayers}"  data-minPlayers="${game.get().minPlayers}" data-playable="true">
-                <!--<span class="badge">
+                <span class="badge">
                     ${game.get().votes}
-                </span>-->
+                </span>
                 ${game.get().title}
             </li>
-        %endfor
-    </ul>
-    <ul class="list-group" id="unplayable-list">
-    </ul>
-
+            %endfor
+        </ul>
+    </div>
+    <div class="panel panel-danger" >
+        <div class="panel-heading">
+            <h2 class="panel-title">Games</h2>
+        </div>
+        <ul class="list-group" id="unplayable-list">
+        </ul>
+    </div>
 </div>
 
 

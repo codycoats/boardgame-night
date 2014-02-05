@@ -11,12 +11,10 @@ $( function() {
     $.each(games, function(item, game){
         if (numAttendees > $(game).data('maxplayers')) {
             $(game).attr('data-playable', false);
-            $(this).addClass('list-group-item-danger');
             unplayable.push(game);
         }
         else if(numAttendees < $(game).data('minplayers')){
             $(game).attr('data-playable', false);
-            $(this).addClass('list-group-item-danger');
             unplayable.push(game);
         }
         else{
