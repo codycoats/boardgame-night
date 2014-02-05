@@ -13,7 +13,7 @@
 
     <dt>Attendess:</dt>
     <dd>
-        <span class='badge'>${len(event.attendees)}</span>
+        <span class='badge' id="attendeeCount_badge" data-count="${len(event.attendees)}">${len(event.attendees)}</span>
         %for a in event.attendees:
           ${a}
         %endfor
@@ -76,15 +76,17 @@
 
 <div id="games">
     <h2>Games</h2>
-    <ul class="list-group">
+    <ul class="list-group" id="playable-list">
         %for game in event.games:
-            <li class="list-group-item game" data-maxPlayers="${game.get().maxPlayers}"  data-minPlayers="${game.get().minPlayers}">
-                <span class="badge">
+            <li class="list-group-item game" data-maxPlayers="${game.get().maxPlayers}"  data-minPlayers="${game.get().minPlayers}" data-playable="true">
+                <!--<span class="badge">
                     ${game.get().votes}
-                </span>
+                </span>-->
                 ${game.get().title}
             </li>
         %endfor
+    </ul>
+    <ul class="list-group" id="unplayable-list">
     </ul>
 
 </div>
