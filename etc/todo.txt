@@ -5,3 +5,5 @@ update_gamelist() called too often
 unsuignup()
 
 events.html call game.get() once
+
+//testing if git cloud deply is workign
