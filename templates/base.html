@@ -45,18 +45,14 @@
             <li><a href="/events">Events</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                %if user:
-                    <li><p class="navbar-text">${user.nickname()}</p></li>
-                    <li class="divider"></li>
-                    <li><a href="/profile">My Profile</a></li>
-                    <li><a href="${log_inout_url}">Logout</a></li>
-                %else:
-                    <li><a href="${log_inout_url}">Login</a></li>
-                %endif
-              </ul>
-            </li>
+            %if user:
+                <li><p class="navbar-text"></p></li>
+                <li class="divider"></li>
+                <li><a href="/profile">My Profile</a></li>
+                <li><a href="${log_inout_url}">Logout</a></li>
+            %else:
+                <li><a href="${log_inout_url}">Login</a></li>
+            %endif
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
